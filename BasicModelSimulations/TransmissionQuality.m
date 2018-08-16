@@ -21,7 +21,7 @@ vis_res_lumped_mats(res_dir_exp, 'EXP')
 disp(['Running simulations to compute transmission quality', ...
       ' for binomial amplitude distribution ...'])
 
-res_dir_mip = TCmodel_func_bwfor(100, 420);
+res_dir_mip = TCmodel_func_bwfor(1, 1);
 vis_res_lumped_mats(res_dir_mip, 'MIP')
 
 disp(['Showing the summary results ...'])

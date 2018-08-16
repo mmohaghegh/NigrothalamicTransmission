@@ -9,8 +9,8 @@ function [] = res_summary(EXP_dir, MIP_dir)
 
     GSN_sel = 0.70;
 
-    EXP = load('plotting-params-EXP.mat');
-    MIP = load('plotting-params-MIP.mat');
+    EXP = load(fullfile(EXP_dir, 'plotting-params-EXP.mat'));
+    MIP = load(fullfile(MIP_dir, 'plotting-params-MIP.mat'));
     % MIPEXP = load('plotting-params-MIP8EXP2-EXPCC25.mat');
     % EXP = load('plotting-params-EXP.mat');
 
@@ -121,12 +121,12 @@ function [] = res_summary(EXP_dir, MIP_dir)
         else
             C_thrEXP(G_ind) = EXP.corr_val(C_thrtemp);
         end
-        C_thrtemp = find(MIPEXP.OVR(G_ind,:)>=0.95,1,'last');
-        if isempty(C_thrtemp)
-            C_thrMIPEXP(G_ind) = nan;
-        else
-            C_thrMIPEXP(G_ind) = MIPEXP.corr_val(C_thrtemp);
-        end
+%         C_thrtemp = find(MIPEXP.OVR(G_ind,:)>=0.95,1,'last');
+%         if isempty(C_thrtemp)
+%             C_thrMIPEXP(G_ind) = nan;
+%         else
+%             C_thrMIPEXP(G_ind) = MIPEXP.corr_val(C_thrtemp);
+%         end
     end
 
     figure;

@@ -104,7 +104,7 @@ function [dir_name] = TCmodel_func_bwfor_modEXPgen(job_id,num_jobs)
     % To run on NEMO cluster
     % parpool('local',str2double(getenv('MOAB_PROCCOUNT')))
 
-    for S = 1:size(NT_GS_JV_TF,2)    % Loop over experimental trials
+    parfor S = 1:size(NT_GS_JV_TF,2)    % Loop over experimental trials
 
        [rebound_spk(S,:),all_reb_spk(S,:)] = ...
             TC_model_CX_SNr_cond_changed_parfor_opt_expdistmod(N_SNr,...
