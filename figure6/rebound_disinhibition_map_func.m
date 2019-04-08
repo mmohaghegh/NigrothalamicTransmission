@@ -4,7 +4,7 @@
 %% and disinhibition scenario is. The data it uses is the simulation where
 %% we apply inhibition having movement-related modulation together with
 %% random excitation (f=5Hz, N=10, corr=0)
-function [] = rebound_disinhibition_map_func(res_flname,contaminated_reb,var_firstspk,median_firstspk,reb_th,res_dir)
+function res_file = rebound_disinhibition_map_func(res_flname,contaminated_reb,var_firstspk,median_firstspk,reb_th,res_dir)
     load(res_flname)
 
     sub_th_exc_ind_bin = logical(sub_th_exc_ind);
@@ -325,7 +325,8 @@ function [] = rebound_disinhibition_map_func(res_flname,contaminated_reb,var_fir
     fig_print(gcf,[res_dir,num2str(reb_th*10,'%.0f'),'-rebound-fr-based'])
     savefig(gcf,[res_dir,num2str(reb_th*10,'%.0f'),'-rebound-fr-based.fig'])
     
-    save(fullfile(res_dir,'variables-med-std'),'reb_combined','reb_disinh_map',...
+    res_file = fullfile(res_dir,'variables-med-std');
+    save(res_file,'reb_combined','reb_disinh_map',...
                                        'contaminated_reb','reb_af_CaKO',...
                                        'reg_af_bef','no_spk_af_mov','spontaneous',...
                                        'contaminated_reb','reb_th',...
