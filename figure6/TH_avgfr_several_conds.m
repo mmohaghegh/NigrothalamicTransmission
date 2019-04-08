@@ -32,13 +32,16 @@ function [putative_rebounds, var_first_spk, median_first_spk] = TH_avgfr_several
         
         for Gexc_ind = 1:length(G_CX)
             
+            % Extracting the recorded spike times after g_T=0 & g_Na=6
             sel_inds = abs(TH_spks_Ca_KO(4,:) - G_SNr(Ginh_ind))<0.001 & ...
                        abs(TH_spks_Ca_KO(3,:) - G_CX(Gexc_ind))<0.001;
             
             spk_times_KO = TH_spks_Ca_KO(1,sel_inds);
             trials_KO    = TH_spks_Ca_KO(2,sel_inds);
             num_trs_KO = length(unique(trials_KO));
-
+            
+            % Extracting the recorded spike times when there is only
+            % excitation
             sel_inds = abs(TH_spks_no_inh(4,:) - G_SNr(Ginh_ind))<0.001 & ...
                        abs(TH_spks_no_inh(3,:) - G_CX(Gexc_ind))<0.001;
             
@@ -46,6 +49,8 @@ function [putative_rebounds, var_first_spk, median_first_spk] = TH_avgfr_several
             trials_noinh    = TH_spks_no_inh(2,sel_inds);
             num_trs_noinh = length(unique(trials_noinh));
             
+            % Extracting the recorded spike times when there is only
+            % inhibition
             sel_inds = abs(TH_spks_no_exc(4,:) - G_SNr(Ginh_ind))<0.001 & ...
                        abs(TH_spks_no_exc(3,:) - G_CX(Gexc_ind))<0.001;
             
@@ -53,6 +58,8 @@ function [putative_rebounds, var_first_spk, median_first_spk] = TH_avgfr_several
             trials_noexc    = TH_spks_no_exc(2,sel_inds);
             num_trs_noexc = length(unique(trials_noexc));
             
+            % Extracting the recorded spike times when both excitation and
+            % inhibition stop firing at the time of movement onset
             sel_inds = abs(TH_spks_mo_exc_inh(4,:) - G_SNr(Ginh_ind))<0.001 & ...
                        abs(TH_spks_mo_exc_inh(3,:) - G_CX(Gexc_ind))<0.001;
             
@@ -60,6 +67,8 @@ function [putative_rebounds, var_first_spk, median_first_spk] = TH_avgfr_several
             trials_mo_excinh    = TH_spks_mo_exc_inh(2,sel_inds);
             num_trs_mo_excinh = length(unique(trials_mo_excinh));
             
+            % Extracting all spike times when the inhibitory inputs has
+            % movement-related decrease and excitation is spontaneous.
             sel_inds = abs(TH_spks(4,:) - G_SNr(Ginh_ind))<0.001 & ...
                        abs(TH_spks(3,:) - G_CX(Gexc_ind))<0.001;
             
